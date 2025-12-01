@@ -1,14 +1,13 @@
--- Upgrade pack schema for Mintora (queue, branding, portal, magic)
--- Run this SECOND.
+-- Upgrade pack schema
 create extension if not exists pgcrypto;
 
 create table if not exists gen_jobs (
   id uuid primary key default gen_random_uuid(),
   email text,
-  kind text not null,          -- 'image' | 'video' | 'copy' etc.
-  payload jsonb,               -- inputs (prompt, duration, resolution, currency)
-  status text not null default 'queued',  -- queued | running | finishing | succeeded | failed
-  progress integer default 0,  -- 0-100
+  kind text not null,
+  payload jsonb,
+  status text not null default 'queued',
+  progress integer default 0,
   message text,
   created_at timestamptz default now(),
   updated_at timestamptz
@@ -16,29 +15,29 @@ create table if not exists gen_jobs (
 
 create table if not exists brand_profiles (
   id uuid primary key default gen_random_uuid(),
-  email text not null,         -- owner
+  email text not null,
   brand_name text not null,
-  primary_color text,          -- e.g. #111111
-  secondary_color text,        -- e.g. #ff00ff
-  font text,                   -- e.g. Inter
-  voice text,                  -- brand writing tone/notes
+  primary_color text,
+  secondary_color text,
+  font text,
+  voice text,
   created_at timestamptz default now()
 );
 
 create table if not exists user_assets (
   id uuid primary key default gen_random_uuid(),
-  email text not null,         -- owner
-  asset_type text not null,    -- image | video | export | doc | etc.
-  url text not null,           -- public storage URL
-  meta jsonb,                  -- { prompt, resolution, preset, ... }
+  email text not null,
+  asset_type text not null,
+  url text not null,
+  meta jsonb,
   created_at timestamptz default now()
 );
 
 create table if not exists magic_orders (
   id uuid primary key default gen_random_uuid(),
-  email text,                  -- requester (nullable for guests)
-  brief text not null,         -- the high-level request
+  email text,
+  brief text not null,
   currency text default 'USD',
-  plan jsonb,                  -- generated plan bundle
+  plan jsonb,
   created_at timestamptz default now()
 );
