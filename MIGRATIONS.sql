@@ -1,6 +1,4 @@
 -- Base schema for Mintora
--- Run this FIRST.
--- Note: Supabase usually has pgcrypto enabled; this ensures gen_random_uuid() exists.
 create extension if not exists pgcrypto;
 
 create table if not exists products (
