@@ -1,5 +1,13 @@
-# Mintora AI — Migration Files
+# Mintora ONE (All-in-One Bundle)
+- Backend (Express) with media endpoints, providers (Replicate/ElevenLabs/HeyGen), Stripe helpers
+- Frontend (Vite-React) with Image, Video, Pricing pages
+- MIGRATIONS.sql minimal schema
+- Dockerfiles + docker-compose
 
-Place these files in the **root** of your GitHub repository.
-
-Run MIGRATIONS.sql and MIGRATIONS_UPGRADES.sql inside **Supabase → SQL Editor**.
+## Quick start (local)
+```
+cp .env.example .env
+docker compose up --build
+```
+Frontend: http://localhost:3000
+Backend:  http://localhost:8080/api/health
