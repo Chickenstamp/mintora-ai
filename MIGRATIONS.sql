@@ -1,52 +1,51 @@
--- Base schema for Mintora
-create extension if not exists pgcrypto;
-
-create table if not exists products (
+-- Minimal schema to run app
+create table if not exists users (
   id uuid primary key default gen_random_uuid(),
-  title text,
-  short_description text,
-  long_description text,
-  image_url text,
-  video_url text,
-  price_cents integer,
-  currency text,
-  asset_type text,
-  tags text[],
-  quality text,
-  resolution text,
-  duration_sec integer,
-  variant_key text,
-  created_at timestamptz default now()
+  email text unique,
+  created_at timestamp with time zone default now()
 );
 
-create table if not exists marketplace (
+create table if not exists assets (
   id uuid primary key default gen_random_uuid(),
-  title text,
-  price_cents integer,
-  currency text,
-  image_url text,
-  created_at timestamptz default now()
-);
-
-create table if not exists product_bundles (
-  id uuid primary key default gen_random_uuid(),
-  title text,
-  items jsonb,
-  created_at timestamptz default now()
-);
-
-create table if not exists studio_prompts (
-  id uuid primary key default gen_random_uuid(),
-  email text,
-  title text,
-  prompt text,
-  created_at timestamptz default now()
-);
-
-create table if not exists studio_assets (
-  id uuid primary key default gen_random_uuid(),
-  email text,
+  user_id uuid references users(id),
+  kind text, -- image|video|audio|srt
   url text,
-  meta jsonb,
-  created_at timestamptz default now()
+  meta jsonb default '{}'::jsonb,
+  created_at timestamp with time zone default now()
+);
+
+create table if not exists credits (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references users(id),
+  balance int default 0,
+  updated_at timestamp with time zone default now()
+);
+
+create table if not exists transactions (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references users(id),
+  type text, -- add|consume
+  amount int,
+  meta jsonb default '{}'::jsonb,
+  created_at timestamp with time zone default now()
+);
+
+-- Optional feature tables
+create table if not exists voices (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references users(id),
+  provider text,
+  provider_ref text,
+  name text,
+  meta jsonb default '{}'::jsonb,
+  created_at timestamp with time zone default now()
+);
+
+create table if not exists characters (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references users(id),
+  name text,
+  anchors jsonb default '[]'::jsonb,
+  meta jsonb default '{}'::jsonb,
+  created_at timestamp with time zone default now()
 );
