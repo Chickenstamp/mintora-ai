@@ -1,0 +1,10 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is Mintora Lab?","acceptedAnswer":{"@type":"Answer","text":"Mintora Lab is an AI-powered creative studio for generating videos, images, audio, avatars, and more."}},
+    {"@type":"Question","name":"Do I own the content I create?","acceptedAnswer":{"@type":"Answer","text":"Yes, unless a specific third-party model has licensing restrictions. Check project settings for any model-specific limits."}},
+    {"@type":"Question","name":"Which formats do you support?","acceptedAnswer":{"@type":"Answer","text":"Images: PNG/JPG. Videos: MP4 (1080p/4K by tier). Audio: MP3/WAV. Subtitles: SRT."}},
+    {"@type":"Question","name":"How do credits work?","acceptedAnswer":{"@type":"Answer","text":"Each generation consumes credits based on resolution, duration, and model. Higher tiers include more credits; you can purchase credit packs anytime."}}
+  ]
+}

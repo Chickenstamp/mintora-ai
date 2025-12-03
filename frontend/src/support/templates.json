@@ -1,0 +1,65 @@
+{
+  "templates": [
+    {
+      "slug": "product-promo-15s",
+      "type": "video",
+      "title": "Product Promo (15s)",
+      "defaults": {
+        "duration": 15,
+        "aspect": "9:16",
+        "music": "pop_energetic_01",
+        "cuts": "fast",
+        "text_layers": 2
+      },
+      "credits": 12
+    },
+    {
+      "slug": "ugc-reel-10s",
+      "type": "video",
+      "title": "UGC Reel (10s)",
+      "defaults": {
+        "duration": 10,
+        "aspect": "9:16",
+        "music": "trendy_reel_02",
+        "cuts": "medium",
+        "text_layers": 1
+      },
+      "credits": 8
+    },
+    {
+      "slug": "logo-stinger-5s",
+      "type": "video",
+      "title": "Logo Stinger (5s)",
+      "defaults": {
+        "duration": 5,
+        "aspect": "16:9",
+        "music": "impact_hit_01",
+        "cuts": "none",
+        "text_layers": 0
+      },
+      "credits": 3
+    },
+    {
+      "slug": "product-still",
+      "type": "image",
+      "title": "Product Still (Studio)",
+      "defaults": {
+        "resolution": "2048x2048",
+        "style": "clean_cgi",
+        "lighting": "softbox"
+      },
+      "credits": 2
+    },
+    {
+      "slug": "portrait-pro",
+      "type": "image",
+      "title": "Portrait Pro",
+      "defaults": {
+        "resolution": "1536x2048",
+        "style": "photoreal",
+        "retouch": "soft"
+      },
+      "credits": 2
+    }
+  ]
+}

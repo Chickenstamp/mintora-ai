@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "title": "Cinematic city",
+      "tags": [
+        "video",
+        "t2v"
+      ],
+      "thumb": "./assets/thumbs/city.png",
+      "media": ""
+    },
+    {
+      "title": "Product studio",
+      "tags": [
+        "image",
+        "product"
+      ],
+      "thumb": "./assets/thumbs/product.png",
+      "media": ""
+    },
+    {
+      "title": "Portrait look",
+      "tags": [
+        "image",
+        "portrait"
+      ],
+      "thumb": "./assets/thumbs/portrait.png",
+      "media": ""
+    },
+    {
+      "title": "Logo stinger",
+      "tags": [
+        "video",
+        "logo"
+      ],
+      "thumb": "./assets/thumbs/logo.png",
+      "media": ""
+    },
+    {
+      "title": "Travel reel",
+      "tags": [
+        "video",
+        "reel"
+      ],
+      "thumb": "./assets/thumbs/travel.png",
+      "media": ""
+    },
+    {
+      "title": "Nature shot",
+      "tags": [
+        "image",
+        "landscape"
+      ],
+      "thumb": "./assets/thumbs/nature.png",
+      "media": ""
+    }
+  ]
+}
