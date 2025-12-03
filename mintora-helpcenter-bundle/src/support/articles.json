@@ -1,0 +1,78 @@
+{
+  "articles": [
+    {
+      "slug": "getting-started",
+      "title": "Getting started with Mintora Lab",
+      "category": "Basics",
+      "excerpt": "Create an account, choose a plan, and start generating images and videos in minutes.",
+      "keywords": [
+        "start",
+        "setup",
+        "account"
+      ],
+      "body_html": "<p>Create an account, verify your email, and pick a plan or buy credits. Open the Image or Video tab to begin. Use short, clear prompts. You can upscale or re\u2011render at any time.</p>"
+    },
+    {
+      "slug": "billing-credits",
+      "title": "How billing & credits work",
+      "category": "Billing",
+      "excerpt": "Subscriptions include monthly credits. You can buy extra credit packs anytime.",
+      "keywords": [
+        "billing",
+        "credits",
+        "pricing",
+        "stripe"
+      ],
+      "body_html": "<p>Plans include a monthly credit allowance. Larger jobs (4K, long video, avatars) use more credits. Credit packs are one\u2011time purchases and never expire.</p>"
+    },
+    {
+      "slug": "commercial-rights",
+      "title": "Do I own the generated content?",
+      "category": "Rights & Licensing",
+      "excerpt": "You own your outputs unless a model provider restricts commercial use.",
+      "keywords": [
+        "ownership",
+        "license",
+        "rights"
+      ],
+      "body_html": "<p>You own the outputs you create for lawful purposes, subject to model provider licenses (e.g. OpenAI, Replicate). Avoid using trademarked or copyrighted inputs you do not own.</p>"
+    },
+    {
+      "slug": "troubleshooting-renders",
+      "title": "Troubleshooting slow or failed renders",
+      "category": "Troubleshooting",
+      "excerpt": "Tips for faster generations and how to retry failed jobs.",
+      "keywords": [
+        "slow",
+        "failed",
+        "render",
+        "queue"
+      ],
+      "body_html": "<p>Heavy demand can slow providers. Try smaller resolutions first, or re\u2011queue during off\u2011peak hours. If a job fails, you\u2019ll be auto\u2011credited back or you can click Retry.</p>"
+    },
+    {
+      "slug": "policies",
+      "title": "Policies: Terms, Privacy, Refunds & Cookies",
+      "category": "Policies",
+      "excerpt": "Links to our policies in one place.",
+      "keywords": [
+        "terms",
+        "privacy",
+        "refund",
+        "cookies"
+      ],
+      "body_html": "<ul><li><a href='/terms'>Terms of Service</a></li><li><a href='/privacy'>Privacy Policy</a></li><li><a href='/refund'>Refund Policy</a></li><li><a href='/cookies'>Cookie Policy</a></li></ul>"
+    },
+    {
+      "slug": "faq",
+      "title": "Top questions (FAQ)",
+      "category": "Basics",
+      "excerpt": "Commercial use, formats, speeds, cancellations, and more.",
+      "keywords": [
+        "faq",
+        "questions"
+      ],
+      "body_html": "<p>See our <a href='/faq'>FAQ</a> for the most common questions about Mintora Lab.</p>"
+    }
+  ]
+}
