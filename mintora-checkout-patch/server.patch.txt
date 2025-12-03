@@ -1,0 +1,4 @@
+// In backend/server.js add:
+import checkoutRoutes from "./routes/checkoutRoutes.js";
+// then mount:
+app.use("/", checkoutRoutes);

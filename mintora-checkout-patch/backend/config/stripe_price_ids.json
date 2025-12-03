@@ -1,0 +1,101 @@
+{
+  "subscriptions": {
+    "starter": {
+      "monthly": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      },
+      "yearly": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      }
+    },
+    "pro_plus": {
+      "monthly": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      },
+      "yearly": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      }
+    },
+    "studio": {
+      "monthly": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      },
+      "yearly": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      }
+    }
+  },
+  "packs": {
+    "credits_50": {
+      "oneoff": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      }
+    },
+    "credits_100": {
+      "oneoff": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      }
+    },
+    "credits_500": {
+      "oneoff": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      }
+    },
+    "credits_1000": {
+      "oneoff": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      }
+    }
+  },
+  "addons": {
+    "day_pass": {
+      "oneoff": {
+        "USD": "",
+        "AUD": "",
+        "AED": "",
+        "EUR": "",
+        "GBP": ""
+      }
+    }
+  }
+}
