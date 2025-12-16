@@ -1,44 +1,137 @@
 import express from "express";
 import cors from "cors";
-import morgan from "morgan";
-import rateLimit from "express-rate-limit";
-import fetch from "node-fetch";
 import Stripe from "stripe";
-import { createClient } from "@supabase/supabase-js";
+import enterpriseRoutes from "./routes/enterprise.js";
+app.use("/api/enterprise", enterpriseRoutes);
 
-import mediaRoutes from "./routes/mediaRoutes.js";
-import replicateProviders from "./routes/providers/replicateRoutes.js";
-import elevenProviders from "./routes/providers/elevenRoutes.js";
-import heygenProviders from "./routes/providers/heygenRoutes.js";
 
+// ==============================
+// App setup
+// ==============================
 const app = express();
-app.use(cors({ origin: "*"}));
-app.use(express.json({ limit: "25mb" }));
-app.use(morgan("tiny"));
-app.use(rateLimit({ windowMs: 60*1000, max: 120 }));
+app.use(cors());
+app.use(express.json());
 
-export const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", { apiVersion: "2023-10-16" });
+// ==============================
+// Environment variables
+// ==============================
+const {
+  STRIPE_SECRET_KEY,
+  BASE_PLATFORM_FEE_USD,
+} = process.env;
 
-app.get("/api/health", (req,res)=> res.json({ ok:true, time: new Date().toISOString() }));
+if (!STRIPE_SECRET_KEY) {
+  throw new Error("❌ STRIPE_SECRET_KEY missing in environment variables");
+}
 
-app.use("/", mediaRoutes);
-app.use("/", replicateProviders);
-app.use("/", elevenProviders);
-app.use("/", heygenProviders);
-
-// simple checkout demo route (you may replace with your flow)
-app.post("/api/checkout/session", async (req,res)=>{
-  try{
-    const { price_id, success_url, cancel_url } = req.body;
-    const session = await stripe.checkout.sessions.create({
-      mode: "subscription",
-      line_items:[{ price: price_id, quantity:1 }],
-      success_url, cancel_url
-    });
-    res.json({ id: session.id, url: session.url });
-  }catch(e){ res.status(500).json({ error: e.message }) }
+const stripe = new Stripe(STRIPE_SECRET_KEY, {
+  apiVersion: "2023-10-16",
 });
 
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, ()=> console.log("Backend listening on", PORT));
+// ==============================
+// Health check (Render needs this)
+// ==============================
+app.get("/", (req, res) => {
+  res.json({ status: "Mintora backend running ✅" });
+});
+
+// ==============================
+// ENTERPRISE PRICE CALCULATOR
+// ==============================
+// POST /api/enterprise/quote
+app.post("/api/enterprise/quote", (req, res) => {
+  try {
+    const {
+      users = 1,
+      monthlyImages = 0,
+      monthlyVideos = 0,
+      monthlyMusic = 0,
+      gamingAssets = false,
+      customModels = false,
+      supportLevel = "standard", // standard | priority | dedicated
+    } = req.body;
+
+    // ------------------------------
+    // Base platform fee
+    // ------------------------------
+    let total = Number(BASE_PLATFORM_FEE_USD || 48999);
+
+    // ------------------------------
+    // Usage pricing (example model)
+    // ------------------------------
+    total += users * 1200;
+    total += monthlyImages * 0.04;
+    total += monthlyVideos * 2.5;
+    total += monthlyMusic * 1.25;
+
+    if (gamingAssets) total += 12000;
+    if (customModels) total += 25000;
+
+    if (supportLevel === "priority") total += 8000;
+    if (supportLevel === "dedicated") total += 18000;
+
+    // ------------------------------
+    // Return quote
+    // ------------------------------
+    res.json({
+      success: true,
+      breakdown: {
+        basePlatformFee: BASE_PLATFORM_FEE_USD,
+        users,
+        monthlyImages,
+        monthlyVideos,
+        monthlyMusic,
+        gamingAssets,
+        customModels,
+        supportLevel,
+      },
+      estimatedMonthlyUSD: Math.round(total),
+    });
+  } catch (err) {
+    console.error("Enterprise quote error:", err);
+    res.status(500).json({ success: false, error: "Quote calculation failed" });
+  }
+});
+
+// ==============================
+// STRIPE CHECKOUT (Enterprise)
+// ==============================
+// POST /api/enterprise/checkout
+app.post("/api/enterprise/checkout", async (req, res) => {
+  try {
+    const { amountUSD, companyName, email } = req.body;
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      payment_method_types: ["card"],
+      customer_email: email,
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            unit_amount: amountUSD * 100,
+            product_data: {
+              name: `Mintora Enterprise Platform — ${companyName}`,
+            },
+          },
+          quantity: 1,
+        },
+      ],
+      success_url: "https://mintora.ai/success",
+      cancel_url: "https://mintora.ai/enterprise",
+    });
+
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error("Stripe checkout error:", err);
+    res.status(500).json({ error: "Checkout session failed" });
+  }
+});
+
+// ==============================
+// Start server
+// ==============================
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+  console.log(`✅ Mintora backend running on port ${PORT}`);
+});

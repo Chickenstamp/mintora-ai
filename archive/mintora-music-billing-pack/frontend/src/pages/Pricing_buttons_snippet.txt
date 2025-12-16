@@ -1,0 +1,30 @@
+// Snippet to add under each plan "Choose" button, or in a dedicated Music section:
+/*
+Example usage in Pricing.jsx:
+  import { createCheckout } from "../lib/billing";
+  const API = import.meta.env.VITE_BACKEND_URL;
+  const USER_ID = "demo-user-123"; // replace with real auth
+
+  <button
+    onClick={()=> createCheckout(`${API}/api/billing/checkout-subscription`, {
+      priceId: "price_music_pro_usd_monthly", // your Stripe Price ID
+      successUrl: window.location.origin + "/pricing?success=1",
+      cancelUrl: window.location.origin + "/pricing?canceled=1"
+    }, USER_ID)}
+    className="mt-3 w-full bg-[#E32727] hover:bg-red-600 rounded-xl p-3 font-semibold"
+  >
+    Add Music Pro ($14.99/mo)
+  </button>
+
+  <button
+    onClick={()=> createCheckout(`${API}/api/billing/checkout-credits`, {
+      priceId: "price_music_pack_10_usd",
+      credits: 10,
+      successUrl: window.location.origin + "/pricing?success=1",
+      cancelUrl: window.location.origin + "/pricing?canceled=1"
+    }, USER_ID)}
+    className="mt-2 w-full bg-white/5 hover:bg-white/10 rounded-xl p-3"
+  >
+    Buy 10 Music Credits ($4.99)
+  </button>
+*/

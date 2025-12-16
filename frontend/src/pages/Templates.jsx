@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import data from '../support/templates.json';
-import '../theme/mintora.css';
-
-export default function Templates(){
-  const [list, setList] = useState([]);
-  useEffect(()=>{ setList(data.templates||[]); },[]);
+export default function Templates() {
   return (
-    <div className="container">
-      <h1>Templates</h1>
-      <div className="grid grid-3">
-        {list.map(t => (
-          <div className="card" key={t.slug}>
-            <div className="badge">{t.type}</div>
-            <h3>{t.title}</h3>
-            <div style={{opacity:.8, fontSize:13, margin:'6px 0'}}>Default settings </div>
-            <pre style={{whiteSpace:'pre-wrap', background:'rgba(0,0,0,.25)', padding:10, borderRadius:8}}>{JSON.stringify(t.defaults,null,2)}</pre>
-            <div className="kicker">Credits: {t.credits}</div>
-            <div style={{marginTop:10}}>
-              <a className="btn btn-primary" href={`/create?template=${t.slug}`}>Use template</a>
-            </div>
-          </div>
-        ))}
+    <div className="max-w-5xl mx-auto px-6 py-20">
+      <h1 className="text-4xl font-bold mb-6">Mintora Templates</h1>
+      <p className="text-gray-400 mb-8">
+        Pre-built creative templates for ads, branding, products, gaming, and social content.
+      </p>
+
+      <div className="bg-neutral-900 p-6 rounded-xl border border-neutral-700">
+        <p className="text-gray-500">
+          Template UI coming soon — selectable presets for product renders, character sheets, landscape packs, etc.
+        </p>
       </div>
     </div>
-  )
+  );
 }

@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Seamless horizontal marquee */
+@keyframes ml {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes mr {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.marquee-left,
+.marquee-right {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.marquee-left { animation: ml 30s linear infinite; }
+.marquee-right { animation: mr 38s linear infinite; }
+.mask-edge {
+  position: relative;
+  overflow: hidden;
+}
+/* Edge mask (left/right fade) */
+.mask-edge {
+  position: relative;
+  overflow: hidden;
+}
+.mask-edge::before,
+.mask-edge::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 140px;
+  pointer-events: none;
+  z-index: 2;
+}
+.mask-edge::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+.mask-edge::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+/* Animated aurora gradient for hero & demo box */
+@keyframes auroraShift {
+  0%   { background-position: 0% 50% }
+  50%  { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+.bg-aurora{
+  background: linear-gradient(120deg,#0b0e13 0%, #111827 25%, #0b0e13 50%, #111827 75%, #0b0e13 100%),
+              radial-gradient(40% 60% at 15% 15%, rgba(255,45,45,.35) 0%, rgba(255,45,45,0) 60%),
+              radial-gradient(40% 60% at 90% 25%, rgba(139,92,246,.35) 0%, rgba(139,92,246,0) 60%),
+              radial-gradient(40% 60% at 70% 85%, rgba(6,182,212,.28) 0%, rgba(6,182,212,0) 60%);
+  background-blend-mode: screen, normal;
+  background-size: 300% 300%, auto, auto, auto;
+  animation: auroraShift 16s ease-in-out infinite;
+}
+
+/* Subtle angled stripe for CTA strip */
+.bg-stripe{
+  background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.06) 0 12px, transparent 12px 24px);
+}
+
+/* Small button helpers used in CTA */
+.btn-ghost{
+  display:inline-flex;align-items:center;border-radius:12px;padding:.6rem 1rem;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);
+  font-weight:600;color:#fff;
+}
+.btn-ghost:hover{ background:rgba(255,255,255,.1); }
+
+.btn-primary{
+  display:inline-flex;align-items:center;border-radius:12px;padding:.6rem 1rem;
+  background:#ff2d2d;box-shadow:0 10px 30px rgba(255,45,45,.25);font-weight:700;color:#fff;
+}
+.btn-primary:hover{ filter:brightness(1.05); }
+
+@keyframes heroGlow {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+.animate-heroGlow {
+  animation: heroGlow 12s ease-in-out infinite;
+}
+.footer-link {
+  color: #d1d5db;
+  transition: 0.25s;
+}
+
+.footer-link:hover {
+  color: white;
+}

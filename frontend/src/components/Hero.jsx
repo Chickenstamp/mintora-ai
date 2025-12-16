@@ -14,3 +14,4 @@ export default function Hero(){
     </section>
   )
 }
+<section className="relative min-h-[82vh] w-full overflow-hidden bg-[url('/noise.png')] bg-[length:300px_300px]">

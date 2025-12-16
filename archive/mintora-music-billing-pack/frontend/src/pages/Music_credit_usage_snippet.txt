@@ -1,0 +1,15 @@
+// In your Music.jsx generate() flow, call consumeCredits before generating when the user
+// does not have Music Pro or Studio.
+// Example:
+//   const API = import.meta.env.VITE_BACKEND_URL;
+//   const USER_ID = "demo-user-123";
+//   const bal = await getBalance(API, USER_ID);
+//   if (!bal.hasMusicPro) {
+//      const used = await consumeCredits(API, USER_ID, 1);
+//      if (used.error) {
+//         // redirect to pricing
+//         window.location.href = "/pricing?need=music";
+//         return;
+//      }
+//   }
+//   // then proceed to call /api/music/generate
