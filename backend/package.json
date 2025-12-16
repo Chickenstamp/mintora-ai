@@ -13,6 +13,7 @@
     "form-data": "^4.0.0",
     "morgan": "^1.10.0",
     "node-fetch": "^3.3.2",
+    "pdfkit": "^0.17.2",
     "replicate": "^0.30.1",
     "stripe": "^14.25.0"
   }
